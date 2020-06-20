@@ -50,13 +50,13 @@ class LinearRegression(BaseModel):
 def calc_loss(y_preds: np.ndarray, y: np.ndarray):
     m = len(y)
 
-    loss = 1 / (2 * m) * np.square(y_preds - y).sum()
+    loss = 1 / m * np.square(y_preds - y).sum()
     return loss
 
 
 def gradient_descent(
         X: np.ndarray, y: np.ndarray, learning_rate: float = 0.1,
-        iterations: float = 100):
+        iterations: int = 100):
     # Initialising theta
     theta = np.random.randn(X.shape[1], 1)
 
