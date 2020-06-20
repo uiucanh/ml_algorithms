@@ -4,10 +4,11 @@ from models.base import BaseModel
 
 
 class LinearRegression(BaseModel):
-    def __init__(self):
-        super().__init__(name='Linear Regression')
+    def __init__(self, n_iter=100):
+        super().__init__(name='Linear Regression', n_iter=n_iter)
         self.beta_hat = 0
         self.fitted = False
+        self.cost_h = None
 
     def preprocess(self, X: np.ndarray):
         X = np.hstack((np.ones((X.shape[0], 1)), X))
@@ -22,6 +23,7 @@ class LinearRegression(BaseModel):
             self.beta_hat = self.beta_hat.reshape(X.shape[1])
         elif method == 'grad_descent':
             theta_h, cost_h = gradient_descent(X, y, iterations=self.n_iter)
+            self.cost_h = cost_h
             self.beta_hat = theta_h[np.argmin(cost_h)]
         else:
             print("Only 'ols' and 'grad_descent' are available")
@@ -68,8 +70,7 @@ def gradient_descent(
         theta_h[i, :] = theta.T
         cost_h[i] = calc_loss(pred, y)
 
-        if i % 5 == 0:
-            print("Iteration: %s" % i)
-            print("Cost: %s" % np.round(cost_h[i], 4))
+        print("Iteration: %s" % i)
+        print("Cost: %s" % np.round(cost_h[i], 4))
 
     return theta_h, cost_h
