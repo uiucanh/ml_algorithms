@@ -5,6 +5,7 @@ import os
 
 file_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, file_path + "/..")
+np.set_printoptions(precision=3, suppress=True)
 
 from models.linear_regression import LinearRegression  # noqa
 from utils.data_utils import generate_linear_data, split_dataset  # noqa
@@ -33,7 +34,6 @@ def main():
     # Scoring
     model.score(y_test, y_pred)
     print("-" * 20)
-    np.set_printoptions(precision=3, suppress=True)
     print("True coefs: ", np.insert(m, 0, bias))
     print("Model coefs:", model.beta_hat)
     print("-" * 20)

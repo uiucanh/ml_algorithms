@@ -70,6 +70,6 @@ def gradient_descent(
 
         if i % 5 == 0:
             print("Iteration: %s" % i)
-            print("Cost: %s" % cost_h[i])
+            print("Cost: %s" % np.round(cost_h[i], 4))
 
     return theta_h, cost_h
