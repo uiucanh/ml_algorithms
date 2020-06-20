@@ -36,7 +36,7 @@ class LinearRegression(BaseModel):
             return
 
         y_preds = X.dot(self.beta_hat)
-        return y_preds.reshape(1, -1)
+        return y_preds.reshape(-1, 1)
 
     def score(self, y_test: np.ndarray, y_pred: np.ndarray,
               metric: str = 'R2'):
