@@ -11,7 +11,7 @@ def generate_linear_data(n_samples: int = 100, n_features: int = 1,
 
     X = np.random.uniform(x_min, x_max, size=(n_samples, n_features))
     m = np.random.uniform(m_min, m_max, size=n_features)
-    y = np.dot(X, m)
+    y = np.dot(X, m).reshape((n_samples, 1))
 
     if bias != 0:
         y += bias
@@ -19,7 +19,7 @@ def generate_linear_data(n_samples: int = 100, n_features: int = 1,
     # Add Gaussian noise
     y += np.random.normal(size=y.shape) * noise_strength
 
-    return X, y
+    return X, y, m, bias
 
 
 def split_dataset(X, y, test_size=0.2, seed=0):
