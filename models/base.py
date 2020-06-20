@@ -15,6 +15,10 @@ class BaseModel(ABC):
         return
 
     @abstractmethod
+    def preprocess(self, X: np.ndarray, y: np.ndarray):
+        return
+
+    @abstractmethod
     def predict(self, X: np.ndarray):
         return
 

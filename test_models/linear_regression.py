@@ -10,7 +10,7 @@ from utils.plot_utils import plot_regression_residual
 
 
 def main():
-    X, y = generate_linear_data(n_samples=1000, n_features=10)
+    X, y = generate_linear_data(n_samples=1000, n_features=10, bias=1000)
     X_train, X_test, y_train, y_test = split_dataset(X, y)
     print("Training size: %s, Test size %s" % (len(X_train), len(X_test)))
     print("-" * 20)
