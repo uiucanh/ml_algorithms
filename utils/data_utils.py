@@ -4,13 +4,17 @@ import numpy as np
 def generate_linear_data(n_samples: int = 100, n_features: int = 1,
                          x_min: int = -5, x_max: int = 5,
                          m_min: int = -10, m_max: int = 10,
-                         noise_strength: int = 1, seed: int = 0):
+                         noise_strength: int = 1, seed: int = 0,
+                         bias: int = 10):
     # Set the random seed
     np.random.seed(seed)
 
     X = np.random.uniform(x_min, x_max, size=(n_samples, n_features))
     m = np.random.uniform(m_min, m_max, size=n_features)
     y = np.dot(X, m)
+
+    if bias != 0:
+        y += bias
 
     # Add Gaussian noise
     y += np.random.normal(size=y.shape) * noise_strength
