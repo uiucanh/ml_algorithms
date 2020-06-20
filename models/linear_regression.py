@@ -47,7 +47,7 @@ class LinearRegression(BaseModel):
         return result
 
 
-def calc_loss(y_preds: np.ndarray, y: np.ndarray):
+def squared_error(y_preds: np.ndarray, y: np.ndarray):
     m = len(y)
 
     loss = 1 / m * np.square(y_preds - y).sum()
@@ -68,7 +68,7 @@ def gradient_descent(
         pred = X.dot(theta)
         theta -= learning_rate / m * X.T.dot(pred - y)
         theta_h[i, :] = theta.T
-        cost_h[i] = calc_loss(pred, y)
+        cost_h[i] = squared_error(pred, y)
 
         print("Iteration: %s" % i)
         print("Cost: %s" % np.round(cost_h[i], 4))
