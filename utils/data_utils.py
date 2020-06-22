@@ -4,10 +4,11 @@ import numpy as np
 def generate_linear_data(n_samples: int = 100, n_features: int = 1,
                          x_min: int = -5, x_max: int = 5,
                          m_min: int = -10, m_max: int = 10,
-                         noise_strength: int = 1, seed: int = 0,
+                         noise_strength: int = 1, seed: int = None,
                          bias: int = 10):
     # Set the random seed
-    np.random.seed(seed)
+    if seed is not None:
+        np.random.seed(seed)
 
     X = np.random.uniform(x_min, x_max, size=(n_samples, n_features))
     m = np.random.uniform(m_min, m_max, size=n_features)
@@ -24,9 +25,10 @@ def generate_linear_data(n_samples: int = 100, n_features: int = 1,
 
 def generate_classification_data(
         n_samples: int = 100, n_features: int = 2, n_clusters: int = 2,
-        cluster_std: int = 1.0, seed: int = 0):
+        cluster_std: int = 1.0, seed: int = None):
     # Set the random seed
-    np.random.seed(seed)
+    if seed is not None:
+        np.random.seed(seed)
 
     # Generate cluster centers
     centers = np.random.uniform(-10, 10, size=(n_clusters, n_features))
