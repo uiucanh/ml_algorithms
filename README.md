@@ -5,6 +5,7 @@ using just `numpy`.
 
 List of algorithms implemented: 
 1. Linear Regression
+2. Logistic Regression
 
 ## Structure
 The folder structure is as follows:
