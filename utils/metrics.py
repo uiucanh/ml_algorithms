@@ -16,12 +16,18 @@ def accuracy(y_test, y_pred):
 
 
 def precision(y_test, y_pred, positive=1):
-    return
+    tp = np.logical_and(y_pred == y_test, y_pred == positive).sum()
+    fp = np.logical_and(y_pred != y_test, y_pred == positive).sum()
+    return tp / (tp + fp)
 
 
 def recall(y_test, y_pred, positive=1):
-    return
+    tp = np.logical_and(y_pred == y_test, y_pred == positive).sum()
+    fn = np.logical_and(y_pred != y_test, y_pred != positive).sum()
+    return tp / (tp + fn)
 
 
 def f1(y_test, y_pred, positive=1):
-    return
+    p = precision(y_test, y_pred)
+    r = recall(y_test, y_pred)
+    return 2 * (p * r) / (p + r)

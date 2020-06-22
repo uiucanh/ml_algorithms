@@ -29,7 +29,7 @@ class LogisticRegression(BaseModel):
         return y_preds.reshape(-1, 1)
 
     def score(self, y_test: np.ndarray, y_pred: np.ndarray,
-              metric: str = 'accuracy'):
+              metric: str = 'F1'):
         result = self._score(y_test, y_pred, metric=metric)
         print("%s score: %s" % (metric, np.round(result, 2)))
         return result
