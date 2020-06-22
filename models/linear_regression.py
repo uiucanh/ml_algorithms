@@ -2,6 +2,7 @@ import numpy as np
 
 from models.base import BaseModel
 from utils.optimizers import gradient_descent
+from utils.losses import squared_error
 
 
 class LinearRegression(BaseModel):
@@ -23,7 +24,9 @@ class LinearRegression(BaseModel):
             self.beta_hat = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
             self.beta_hat = self.beta_hat.reshape(X.shape[1])
         elif method == 'grad_descent':
-            theta_h, cost_h = gradient_descent(X, y, iterations=self.n_iter)
+            theta_h, cost_h = gradient_descent(
+                X, y, cost_function=squared_error, iterations=self.n_iter
+            )
             self.cost_h = cost_h
             self.beta_hat = theta_h[np.argmin(cost_h)]
         else:

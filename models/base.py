@@ -1,7 +1,7 @@
 import numpy as np
 
 from abc import ABC, abstractmethod
-from utils.metrics import available_metrics, r2
+from utils.metrics import *
 
 
 class BaseModel(ABC):
@@ -32,7 +32,9 @@ class BaseModel(ABC):
             return None
 
         mapping = {
-            'R2': r2
+            'R2': r2,
+            'F1': f1,
+            'accuracy': accuracy
         }
 
         result = mapping[metric].__call__(y_test, y_pred)

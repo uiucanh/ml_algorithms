@@ -22,6 +22,35 @@ def generate_linear_data(n_samples: int = 100, n_features: int = 1,
     return X, y, m, bias
 
 
+def generate_classification_data(
+        n_samples: int = 100, n_features: int = 2, n_clusters: int = 2,
+        cluster_std: int = 1.0, seed: int = 0):
+    # Set the random seed
+    np.random.seed(seed)
+
+    # Generate cluster centers
+    centers = np.random.uniform(-10, 10, size=(n_clusters, n_features))
+
+    # Evenly divide number of samples per cluster
+    n_samples_per_cluster = [n_samples // n_clusters for _ in range(n_clusters)]
+
+    # Fill cluster_std array
+    cluster_std = np.full(len(centers), cluster_std)
+
+    X = []
+    y = []
+
+    for i, (n, std) in enumerate(zip(n_samples_per_cluster, cluster_std)):
+        X.append(np.random.normal(loc=centers[i], scale=std,
+                                  size=(n, n_features)))
+        y += [i] * n
+
+    X = np.concatenate(X)
+    y = np.array(y).reshape((n_samples, 1))
+
+    return X, y, centers
+
+
 def split_dataset(X, y, test_size=0.2, seed=0):
     # Set the random seed
     np.random.seed(seed)
