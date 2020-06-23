@@ -46,6 +46,9 @@ def main():
     if n_features == 2:
         plot_logistic_regression_decision_boundary(X, y, model)
 
+    # Plot iteration vs cost
+    plot_iteration_vs_cost(n_iter, model.cost_h)
+
 
 if __name__ == '__main__':
     main()
