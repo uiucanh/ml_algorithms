@@ -36,8 +36,8 @@ def plot_logistic_regression_decision_boundary(
 
     plt.scatter(X[neg_mask][:, 0], X[neg_mask][:, 1])
     plt.scatter(X[pos_mask][:, 0], X[pos_mask][:, 1], c='red')
-    x = [np.min(X[:, 0] - 1), np.max(X[:, 1] + 1)]
-    y = -(model.beta_hat[0] + model.beta_hat[1].dot(x_values)
-          ) / model.beta_hat[2]
+    x_values = [np.min(X[:, 0] - 1), np.max(X[:, 1] + 1)]
+    y_values = -(model.beta_hat[0] + np.dot(model.beta_hat[1], x_values)) / \
+               model.beta_hat[2]
     plt.plot(x_values, y_values, label='Decision Boundary')
     plt.show()
